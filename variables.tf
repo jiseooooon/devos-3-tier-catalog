@@ -82,3 +82,9 @@ variable "bucket_private_acl" {
   type        = bool
   default     = true
 }
+
+variable "additional_tags" {
+  default = {}
+  description = "Additional Resource Tags"
+  type = map(string)
+}
