@@ -40,16 +40,10 @@ resource "aws_autoscaling_group" "web-autoscaling-group" {
     value               = "${var.resource_prefix}-WEB-ASG-EC2"
     propagate_at_launch = true
   }
-  for_each = var.additional_tags
-  tag {
-    key                 = each.key
-    value               = each.value
-    propagate_at_launch = true
-  }
 }
 
 
-/*resource "aws_autoscaling_group_tag" "web-autoscaling-group-tag" {
+resource "aws_autoscaling_group_tag" "web-autoscaling-group-tag" {
   for_each = var.additional_tags
   autoscaling_group_name = aws_autoscaling_group.web-autoscaling-group.name
   tag {
@@ -57,7 +51,7 @@ resource "aws_autoscaling_group" "web-autoscaling-group" {
     value               = each.value
     propagate_at_launch = true
   }
-}*/
+}
 
 resource "aws_autoscaling_attachment" "web-asg-attachment" {
   autoscaling_group_name = aws_autoscaling_group.web-autoscaling-group.id
@@ -110,15 +104,9 @@ resource "aws_autoscaling_group" "was-autoscaling-group" {
     value               = "${var.resource_prefix}-WAS-ASG-EC2"
     propagate_at_launch = true
   }
-  for_each = var.additional_tags
-  tag {
-    key                 = each.key
-    value               = each.value
-    propagate_at_launch = true
-  }
 }
 
-/*resource "aws_autoscaling_group_tag" "was-autoscaling-group-tag" {
+resource "aws_autoscaling_group_tag" "was-autoscaling-group-tag" {
   for_each = var.additional_tags
   autoscaling_group_name = aws_autoscaling_group.was-autoscaling-group.name
   tag {
@@ -126,7 +114,7 @@ resource "aws_autoscaling_group" "was-autoscaling-group" {
     value               = each.value
     propagate_at_launch = true
   }
-}*/
+}
 
 resource "aws_autoscaling_attachment" "was-asg-attachment" {
   autoscaling_group_name = aws_autoscaling_group.was-autoscaling-group.id
