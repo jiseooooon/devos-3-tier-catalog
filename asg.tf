@@ -45,7 +45,7 @@ resource "aws_autoscaling_group" "web-autoscaling-group" {
 
 resource "aws_autoscaling_group_tag" "web-autoscaling-group-tag" {
   for_each = var.additional_tags
-  autoscaling_group_name = aws_autoscaling_group.web-autoscaling-group.auto_scaling_group_name
+  autoscaling_group_name = aws_autoscaling_group.web-autoscaling-group.name
   tag {
     key                 = each.key
     value               = each.value
@@ -108,7 +108,7 @@ resource "aws_autoscaling_group" "was-autoscaling-group" {
 
 resource "aws_autoscaling_group_tag" "was-autoscaling-group-tag" {
   for_each = var.additional_tags
-  autoscaling_group_name = aws_autoscaling_group.was-autoscaling-group.auto_scaling_group_name
+  autoscaling_group_name = aws_autoscaling_group.was-autoscaling-group.name
   tag {
     key                 = each.key
     value               = each.value
