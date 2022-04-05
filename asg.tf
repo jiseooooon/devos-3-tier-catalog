@@ -42,6 +42,17 @@ resource "aws_autoscaling_group" "web-autoscaling-group" {
   }
 }
 
+
+resource "aws_autoscaling_group_tag" "web-autoscaling-group-tag" {
+  for_each = var.additional_tags
+  autoscaling_group_name = aws_autoscaling_group.web-autoscaling-group.auto_scaling_group_name
+  tag {
+    key                 = each.key
+    value               = each.value
+    propagate_at_launch = true
+  }
+}
+
 resource "aws_autoscaling_attachment" "web-asg-attachment" {
   autoscaling_group_name = aws_autoscaling_group.web-autoscaling-group.id
   alb_target_group_arn   = aws_lb_target_group.web-alb-target-group.arn
@@ -91,6 +102,16 @@ resource "aws_autoscaling_group" "was-autoscaling-group" {
   tag {
     key                 = "Name"
     value               = "${var.resource_prefix}-WAS-ASG-EC2"
+    propagate_at_launch = true
+  }
+}
+
+resource "aws_autoscaling_group_tag" "was-autoscaling-group-tag" {
+  for_each = var.additional_tags
+  autoscaling_group_name = aws_autoscaling_group.was-autoscaling-group.auto_scaling_group_name
+  tag {
+    key                 = each.key
+    value               = each.value
     propagate_at_launch = true
   }
 }
