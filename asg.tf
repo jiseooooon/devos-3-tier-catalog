@@ -69,10 +69,11 @@ resource "aws_launch_configuration" "was-launch-configuration" {
   associate_public_ip_address = false
   security_groups = [aws_security_group.was-lc-sg.id]
 
+  /*https://archive.apache.org/dist/tomcat/*/
   user_data = <<-EOF
             #!/bin/bash
             amazon-linux-extras install -y java-openjdk11
-            wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.59/bin/apache-tomcat-9.0.59.tar.gz
+            wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.59/bin/apache-tomcat-9.0.59.tar.gz
             tar xvf apache-tomcat-9.0.59.tar.gz
             ./apache-tomcat-9.0.59/bin/startup.sh
             sudo yum install ruby -y
