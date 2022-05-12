@@ -20,6 +20,6 @@ resource "aws_instance" "add-bastion-ec2" {
   vpc_security_group_ids = [aws_security_group.bastion-sg.id]
 
   tags = {
-    Name = "Rename-Bastion-2"
+    Name = "Rename-Bastion-By-JS"
   }
 }
