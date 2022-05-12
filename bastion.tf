@@ -3,7 +3,7 @@ resource "aws_instance" "bastion-ec2" {
   instance_type = var.bastion_instance_type
   associate_public_ip_address = true
   subnet_id = aws_subnet.tier-public-subnet-1.id
-  key_name = var.instance_key_pair_name
+  key_name = var.bastion_key_pair_name
   vpc_security_group_ids = [aws_security_group.bastion-sg.id]
 
   tags = {
@@ -20,6 +20,6 @@ resource "aws_instance" "add-bastion-ec2" {
   vpc_security_group_ids = [aws_security_group.bastion-sg.id]
 
   tags = {
-    Name = "Rename-Bastion-By-JS"
+    Name = "${var.resource_prefix}-Bastion-2"
   }
 }
